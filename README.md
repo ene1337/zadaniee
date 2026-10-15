@@ -1,62 +1,64 @@
-1. analiza wymagan – magazyn elektro-bud
-2. wymagania funkcjonalne
+1. Analiza wymagan – Magazyn Elektro-Bud
+2. Wymagania funkcjonalne
 
-fr.01. logowanie – login i haslo lub karta rfid, kazdy pracownik ma swoje konto.
+FR.01. Logowanie – pracownik loguje sie za pomoca loginu i hasla lub karty RFID. Kazdy ma swoje konto
 
-fr.02. wyszukiwanie towaru – szukanie po kodzie ean lub nazwie.
+FR.02. Wyszukiwanie towaru – mozna znalezc towar po kodzie EAN lub nazwie
 
-fr.03. lokalizacja towaru – system pokazuje, gdzie lezy towar, np. s1r2p3.
+FR.03. Lokalizacja towaru – system pokazuje gdzie znajduje sie dany towar np. S1R2P3
 
-fr.04. przyjecie towaru – dodawanie towaru do magazynu z zapisem ilosci, daty i osoby.
+FR.04. Przyjecie towaru – magazynier dodaje towar do magazynu i zapisuje jego ilosc date oraz osobe ktora go przyjela
 
-fr.05. wydanie towaru – zmniejszanie stanu po wydaniu towaru.
+FR.05. Wydanie towaru – po wydaniu towaru jego ilosc na magazynie zostaje zmniejszona
 
-fr.06. blokada braku towaru – nie mozna wydac wiecej, niz jest na stanie.
+FR.06. Blokada braku towaru – system nie pozwala wydac wiecej towaru niz jest na stanie
 
-fr.07. edycja produktow – kierownik dodaje i zmienia produkty.
+FR.07. Edycja produktow – kierownik moze dodawac nowe produkty i zmieniac ich dane
 
-fr.08. historia operacji – kierownik sprawdza, kto i kiedy przyjal lub wydal towar.
+FR.08. Historia operacji – kierownik moze sprawdzic kto i kiedy przyjal lub wydal towar
 
-fr.09. raporty – tworzenie raportow o stanie magazynu.
+FR.09. Raporty – system pozwala tworzyc raporty o stanie magazynu
 
-fr.10. konta uzytkownikow – admin dodaje konta, zmienia uprawnienia i resetuje hasla.
+FR.10. Konta uzytkownikow – administrator dodaje konta zmienia uprawnienia i resetuje hasla
 
-fr.11. jednoczesne operacje – system zapobiega bledom, gdy dwie osoby wydaja ten sam towar.
+FR.11. Jednoczesne operacje – system zabezpiecza sie przed bledami gdy dwoch magazynierow wydaje ten sam towar w tym samym czasie
 
-3. wymagania niefunkcjonalne
+3. Wymagania niefunkcjonalne
 
-nfr.01. szybkosc - system reaguje w 1-2 sekundy.
+NFR.01. Szybkosc – wyszukiwanie i skanowanie towaru powinno trwac nie dluzej niz 1-2 sekundy
 
-nfr.02. bezpieczenstwo – hasla sa zabezpieczone, a kazdy ma swoje konto.
+NFR.02. Bezpieczenstwo – kazdy pracownik ma swoje konto a hasla sa odpowiednio zabezpieczone
 
-nfr.03. uprawnienia – kazdy ma dostep tylko do swoich funkcji.
+NFR.03. Uprawnienia – kazdy ma dostep tylko do funkcji potrzebnych mu do pracy
 
-nfr.04. dostep zdalny – kierownik moze sprawdzac raporty poza magazynem.
+NFR.04. Dostep zdalny – kierownik moze sprawdzac raporty rowniez poza magazynem
 
-nfr.05. interfejs – prosty wyglad, wygodny do szybkiej pracy.
+NFR.05. Interfejs – wyglad systemu jest prosty i czytelny zeby mozna bylo szybko wykonywac operacje
 
-4. aktorzy systemu
+4. Aktorzy systemu
 
-magazynier – szuka towaru oraz przyjmuje i wydaje produkty.
+Magazynier – szuka towarow sprawdza gdzie leza oraz przyjmuje i wydaje produkty
 
-kierownik – zarzadza produktami, sprawdza historie i raporty.
+Kierownik – dodaje i zmienia produkty sprawdza historie operacji i tworzy raporty
 
-administrator – tworzy konta i ustawia uprawnienia.
+Administrator – zaklada konta pracownikom ustawia uprawnienia i resetuje hasla
 
-5. diagram przypadkow uzycia
+5. Diagram przypadkow uzycia
 
-magazynier: logowanie, szukanie towaru, sprawdzanie lokalizacji, przyjecie i wydanie.
+Magazynier – logowanie wyszukiwanie towaru sprawdzanie lokalizacji przyjmowanie i wydawanie towaru
 
-kierownik: logowanie, szukanie towaru, edycja produktow, historia i raporty.
+Kierownik – logowanie wyszukiwanie towaru edycja produktow sprawdzanie historii i raportow
 
-administrator: logowanie i zarzadzanie kontami.
+Administrator – logowanie i zarzadzanie kontami
 
-przyjecie i wydanie towaru lacza sie ze sprawdzeniem dostepnosci.
+Przy przyjeciu i wydaniu towaru system sprawdza dane oraz aktualny stan magazynu
 
-blokada ujemnego stanu uruchamia sie przy probie wydania zbyt duzej ilosci towaru.
+Przy wydawaniu towaru system sprawdza czy jest go wystarczajaco duzo
 
-6. relacje include i extend
+6. Relacje include i extend
 
-include – sprawdzenie dostepnosci jest wymagane przy operacjach magazynowych.
+Include – przy wydaniu towaru system zawsze sprawdza czy odpowiednia ilosc jest dostepna na magazynie
 
-extend – blokada ujemnego stanu uruchamia sie, gdy ktos probuje wydac wiecej towaru, niz jest na magazynie, lub gdy wystepuje problem przy jednoczesnym wydawaniu.
+Extend – blokada wydania uruchamia sie wtedy gdy magazynier chce wydac wiecej towaru niz jest na stanie
+
+System dodatkowo zabezpiecza stan magazynu przed bledami gdy kilka osob jednoczesnie wydaje ten sam towar
